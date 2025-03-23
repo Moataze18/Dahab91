@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صالون دهب للحلاقة</title>
+  <title>صالون دهب للحلاقة | Dahab Salon</title>
   
   <!-- Firebase SDK -->
   <script type="module">
@@ -33,16 +33,17 @@
       });
     }
 
-    window.increaseCount = () => updateCount(1);
-    window.decreaseCount = () => updateCount(-1);
-
-    // تحقق من كلمة المرور (بدون تخزينها)
-    document.addEventListener("DOMContentLoaded", () => {
-      let password = prompt("ادخل كلمة المرور:");
+    window.showAdminControls = () => {
+      let password = prompt("ادخل كلمة المرور | Enter Password:");
       if (password === "12661") {
         document.getElementById('admin-controls').style.display = 'block';
+      } else {
+        alert("كلمة المرور غير صحيحة! | Incorrect password!");
       }
-    });
+    };
+
+    window.increaseCount = () => updateCount(1);
+    window.decreaseCount = () => updateCount(-1);
   </script>
 
   <style>
@@ -55,17 +56,21 @@
     .visitor-counter { font-size: 24px; font-weight: bold; background: rgba(255, 215, 0, 0.9); color: black; padding: 10px; border-radius: 10px; display: inline-block; margin: 15px 0; }
     .admin-controls { margin-top: 10px; display: none; }
     .admin-controls button { font-size: 16px; padding: 8px 15px; cursor: pointer; border: none; background: gold; color: black; border-radius: 5px; margin: 5px; }
+    .admin-button { margin-top: 10px; font-size: 16px; padding: 8px 15px; cursor: pointer; border: none; background: red; color: white; border-radius: 5px; }
   </style>
 </head>
 <body>
   <div class="overlay">
     <div class="box">
-      <h1>صالون دهب للحلاقة</h1>
-      <h2>تأسس سنة 1991</h2>
-      <h3>مواعيد العمل: من 10 صباحًا حتى 10 مساءً</h3>
-      <h3 style="color: red;">مغلق أوقات الصلاة</h3>
-      <h3 style="color: red;">مغلق يوم الإثنين للراحة</h3>
+      <h1>صالون دهب للحلاقة | Dahab Salon</h1>
+      <h2>تأسس سنة 1991 | Established in 1991</h2>
+      <h3>مواعيد العمل: 10 ص - 10 م | Working Hours: 10 AM - 10 PM</h3>
+      <h3 style="color: red;">مغلق أوقات الصلاة | Closed during prayer times</h3>
+      <h3 style="color: red;">مغلق الإثنين للراحة | Closed on Monday</h3>
       <p class="visitor-counter">عدد الزوار الآن: <span id="visitor-count">0</span></p>
+      
+      <button class="admin-button" onclick="showAdminControls()">🔑 Admin</button>
+      
       <div class="admin-controls" id="admin-controls">
         <button onclick="increaseCount()">➕</button>
         <button onclick="decreaseCount()">➖</button>
