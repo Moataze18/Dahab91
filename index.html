@@ -22,7 +22,8 @@
 
     // تحديث العدد في الوقت الحقيقي
     onValue(visitorRef, (snapshot) => {
-      document.getElementById('visitor-count').innerText = snapshot.val() || 0;
+      let count = snapshot.val() || 0;
+      document.querySelectorAll('.visitor-count').forEach(el => el.innerText = count);
     });
 
     function updateCount(change) {
@@ -51,13 +52,18 @@
     * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
     body { color: white; background: url('background.jpg') no-repeat center center fixed; background-size: cover; min-height: 100vh; position: relative; }
     .overlay { background: rgba(0, 0, 0, 0.6); min-height: 100vh; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .container { display: flex; gap: 20px; }
-    .box { background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px; text-align: center; border: 2px solid gold; width: 300px; }
+    .container { display: flex; flex-direction: column; gap: 20px; width: 100%; max-width: 600px; }
+    .box { background: rgba(0, 0, 0, 0.7); padding: 20px; border-radius: 10px; text-align: center; border: 2px solid gold; width: 100%; }
     h1, h2 { color: gold; margin-bottom: 10px; }
     .visitor-counter { font-size: 24px; font-weight: bold; background: rgba(255, 215, 0, 0.9); color: black; padding: 10px; border-radius: 10px; display: inline-block; margin: 15px 0; }
     .admin-controls { margin-top: 10px; display: none; }
     .admin-controls button { font-size: 16px; padding: 8px 15px; cursor: pointer; border: none; background: gold; color: black; border-radius: 5px; margin: 5px; }
     .admin-button { position: absolute; top: 10px; left: 10px; font-size: 14px; padding: 5px 10px; cursor: pointer; border: none; background: rgba(255, 255, 255, 0.5); color: black; border-radius: 5px; }
+    
+    @media (min-width: 768px) {
+      .container { flex-direction: row; justify-content: center; max-width: 800px; }
+      .box { width: 45%; }
+    }
   </style>
 </head>
 <body>
@@ -71,7 +77,7 @@
         <h3>مواعيد العمل: 12 ظهرا - 10 مساءً</h3>
         <h3 style="color: red;">مغلق أوقات الصلاة</h3>
         <h3 style="color: red;">مغلق الإثنين للراحة</h3>
-        <p class="visitor-counter">عدد الزوار الآن: <span id="visitor-count">0</span></p>
+        <p class="visitor-counter">عدد الزوار الآن: <span class="visitor-count">0</span></p>
         <p>تحياتي وتقديري: السعيد محمود</p>
       </div>
       
@@ -81,7 +87,7 @@
         <h3>Working Hours: 12 PM - 10 PM</h3>
         <h3 style="color: red;">Closed during prayer times</h3>
         <h3 style="color: red;">Closed on Monday</h3>
-        <p class="visitor-counter">Current Visitors: <span id="visitor-count">0</span></p>
+        <p class="visitor-counter">Current Visitors: <span class="visitor-count">0</span></p>
         <p>Best Regards: El-Saeed Mahmoud</p>
       </div>
     </div>
