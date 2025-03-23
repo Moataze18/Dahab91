@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>صالون دهتــب للحلاقة</title>
+  <title>صالون دهب للحلاقة</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap');
     
@@ -128,11 +128,12 @@
   </div>
 
   <script>
-    let customerCount = 0;
+    let customerCount = localStorage.getItem('visitorCount') ? parseInt(localStorage.getItem('visitorCount')) : 0;
 
     function updateCounts() {
       document.getElementById('arabic-count').innerText = customerCount;
       document.getElementById('english-count').innerText = customerCount;
+      localStorage.setItem('visitorCount', customerCount);
     }
 
     function increaseCount() {
